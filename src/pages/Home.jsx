@@ -26,6 +26,10 @@ const Home = () => {
           <h2>Socratic Explorer</h2>
           <p>Explore Fraction by Comparing,Adding, Subtracting</p>
         </Link>
+        <Link to="/story" className="option-card">
+          <h2>Socratic Stories</h2>
+          <p>Learn Fractions Through Stories</p>
+        </Link>
       </div>
     </div>
   );

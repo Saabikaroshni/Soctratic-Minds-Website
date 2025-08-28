@@ -1,17 +1,17 @@
 
 
 import React from "react";
-import Img from "../assets/explorer.png"; // adjust path if needed
+import Img from "../assets/story.png"; // adjust path if needed
 import "../styles/bot.css"; // optional for styling
 
-const Explorer= () => {
+const Story= () => {
   const handleRedirect = () => {
     window.location.href = "https://adventures-szuj.vercel.app/";
   };
 
   return (
     <div className="bot-container">
-      <h1 className="bot-title">Socratic Explorer</h1>
+      <h1 className="bot-title">Socratic Stories</h1>
       <img src={Img} alt="Bot" className="bot-image" />
       <button className="start-btn" onClick={handleRedirect}>
         Let's Begin
@@ -20,4 +20,4 @@ const Explorer= () => {
   );
 };
 
-export default Explorer;
+export default Story;

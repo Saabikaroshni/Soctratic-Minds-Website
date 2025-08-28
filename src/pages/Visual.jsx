@@ -10,7 +10,7 @@ const Visual = () => {
 
   return (
     <div className="bot-container">
-      <h1 className="bot-title">Socratic Bot</h1>
+      <h1 className="bot-title">Socratic visualizer</h1>
       <img src={Img} alt="Bot" className="bot-image" />
       <button className="start-btn" onClick={handleRedirect}>
         Start

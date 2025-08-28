@@ -12,6 +12,7 @@ import Bot from "./pages/Bot";
 import Games from "./pages/Games";
 import Visual from "./pages/Visual";
 import Explorer from "./pages/Explorer";
+import Story from "./pages/Story";
 
 function App() {
   const [showLogin, setShowLogin] = useState(false);
@@ -55,6 +56,7 @@ function App() {
             <Route path="/games" element={<Games />} />
             <Route path="/visualizer" element={<Visual />} />
             <Route path="/missions" element={<Explorer />} />
+            <Route path="/story" element={<Story />} />
           </Routes>
 
              {/* Show Login Modal */}
