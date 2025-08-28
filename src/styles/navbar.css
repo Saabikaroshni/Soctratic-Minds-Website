@@ -56,3 +56,33 @@
   font-size: 1.4rem;
   font-weight: 600;
 }
+/* Responsive styles for mobile devices (screens up to 768px wide) */
+@media (max-width: 468px) {
+  .navbar {
+    flex-direction: column; /* Stack items vertically */
+    align-items: center;   /* Center items horizontally */
+    gap: 2rem;             /* Add space between the stacked items */
+        
+    width: 100%;     /* Adjust padding for smaller screens */
+  }
+
+  /* Make the search box take up a majority of the screen width */
+  .search-box {
+    width: 100%;
+    text-align: center; /* Center placeholder text */
+  }
+
+  /* Center the buttons and let them take up available space */
+  .navbar-right {
+    display: flex;
+    justify-content: center;
+    width: 50%;
+   
+  }
+
+  .navbar-right .btn {
+    margin-left: 0; /* Remove the margin from desktop view */
+    flex-grow: 1;   /* Allow buttons to grow and fill the space */
+    text-align: center;
+  }
+}
