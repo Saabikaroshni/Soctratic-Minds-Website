@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import "../styles/hero.css";
 import { Link } from "react-router-dom";
-import Signup from "./Signup"; // Create this file similar to Login.jsx
+import "../styles/hero.css";
+import Signup from "./Signup"; // your signup popup
 
 const Button = ({ children, primary = false, onClick }) => {
   const baseStyle = {
@@ -22,10 +22,14 @@ const Button = ({ children, primary = false, onClick }) => {
     backgroundColor: "transparent",
     borderColor: "white",
     color: "white",
+    textDecoration: "none",
   };
 
   return (
-    <button style={{ ...baseStyle, ...(primary ? primaryStyle : secondaryStyle) }} onClick={onClick}>
+    <button
+      style={{ ...baseStyle, ...(primary ? primaryStyle : secondaryStyle) }}
+      onClick={onClick}
+    >
       {children}
     </button>
   );
@@ -36,12 +40,19 @@ const Hero = () => {
 
   return (
     <section className="hero">
-      <div className="fractions-bg">
-        <span>½</span>
-        <span>⅓</span>
-        <span>¾</span>
-        <span>¼</span>
-        <span>⅔</span>
+      {/* Galaxy stars */}
+      <div className="galaxy-bg">
+        {[...Array(150)].map((_, i) => (
+          <div
+            key={i}
+            className={`star ${i % 3 === 0 ? "small" : i % 3 === 1 ? "medium" : "large"}`}
+            style={{
+              top: `${Math.random() * 100}%`,
+              left: `${Math.random() * 100}%`,
+              animationDelay: `${Math.random() * 3}s`,
+            }}
+          ></div>
+        ))}
       </div>
 
       <div className="hero-content">
@@ -50,15 +61,42 @@ const Hero = () => {
           Socratic Minds is a generative AI tutor that uses the Socratic method to help students build deep, intuitive knowledge of fractions—no memorization required.
         </p>
 
-        <div style={{ display: "flex", gap: "1rem", marginTop: "2rem", justifyContent: "center" }}>
-          <Link to="/learnmore"><Button>Learn More</Button></Link>
-          <Button primary onClick={() => setShowSignup(true)}>Sign Up</Button>
+        <div className="hero-buttons">
+          <Button onClick={() => setShowSignup(true)} primary>Sign Up</Button>
+          <Link to="/learnmore">
+            <Button>Learn More</Button>
+          </Link>
         </div>
       </div>
 
-      {showSignup && (
-        <Signup onClose={() => setShowSignup(false)} />
-      )}
+      {/* Features Section */}
+      <section className="features">
+        <h2>Features</h2>
+        <div className="features-grid">
+          <div className="feature-card">
+            <span className="icon">💬</span>
+            <h3>AI-Powered Tutoring</h3>
+            <p>Engage in a dynamic conversation with a GPT-powered tutor that guides you through complex topics.</p>
+          </div>
+          <div className="feature-card">
+            <span className="icon">❓</span>
+            <h3>Socratic Questioning</h3>
+            <p>Our tutor asks probing questions, encouraging you to think critically and discover answers yourself.</p>
+          </div>
+          <div className="feature-card">
+            <span className="icon">📊</span>
+            <h3>Interactive Visualizers</h3>
+            <p>See fractions come to life with simple, interactive block and pie chart representations.</p>
+          </div>
+          <div className="feature-card">
+            <span className="icon">➕</span>
+            <h3>Core Fraction Skills</h3>
+            <p>Master key operations like comparison, simplification, addition, and subtraction with unlike denominators.</p>
+          </div>
+        </div>
+      </section>
+
+      {showSignup && <Signup onClose={() => setShowSignup(false)} />}
     </section>
   );
 };
