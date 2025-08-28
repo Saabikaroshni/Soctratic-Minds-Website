@@ -1,0 +1,309 @@
+/* ===== Overlay background ===== */
+.login-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(-45deg, #023a53, #011838, #044a5a, #01151e);
+  background-size: 400% 400%;
+  animation: animateBg 20s infinite linear;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2000;
+  overflow: hidden;
+}
+/* Centered Toast Notification */
+/* Toast Styles */
+.toast {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 14px 24px;
+  border-radius: 12px;
+  font-size: 16px;
+  font-weight: bold;
+  color: #fff;
+  text-align: center;
+  background: linear-gradient(-45deg, #023a53, #011838, #044a5a, #01151e);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+  animation: fadeInOut 3s ease forwards;
+  z-index: 9999;
+  max-width: 300px;
+  word-wrap: break-word;
+}
+
+/* Success and Error Variants */
+.toast.success {
+  border: 2px solid #00e676;
+}
+
+.toast.error {
+  border: 2px solid #ff5252;
+}
+
+/* Animation */
+@keyframes fadeInOut {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, -60%);
+  }
+  10% {
+    opacity: 1;
+    transform: translate(-50%, -50%);
+  }
+  90% {
+    opacity: 1;
+    transform: translate(-50%, -50%);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(-50%, -40%);
+  }
+}
+
+
+/* Fade animation */
+@keyframes fadeInOut {
+  0% { opacity: 0; transform: translate(-50%, -60%); }
+  10% { opacity: 1; transform: translate(-50%, -50%); }
+  90% { opacity: 1; transform: translate(-50%, -50%); }
+  100% { opacity: 0; transform: translate(-50%, -40%); }
+}
+
+
+/* ===== Stars (random dots) ===== */
+.star {
+  position: absolute;
+  background: white;
+  border-radius: 50%;
+  opacity: 0.8;
+  animation: twinkle 3s infinite ease-in-out;
+}
+
+/* Generate different sizes for realism */
+.star.small { width: 1px; height: 1px; }
+.star.medium { width: 2px; height: 2px; }
+.star.large { width: 3px; height: 3px; }
+
+/* ===== Star Twinkling Effect ===== */
+@keyframes twinkle {
+  0%, 100% { opacity: 0.2; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.3); }
+}
+
+/* ===== Floating arithmetic values ===== */
+.math-float span {
+  position: absolute;
+  font-size: 2rem;
+  font-weight: bold;
+  color: rgba(255, 255, 255, 0.25);
+  user-select: none;
+  opacity: 0;
+  z-index: 1;
+}
+
+.math-float span:nth-child(1) {
+  top: 80%; left: 10%;
+  animation: float1 18s infinite linear;
+}
+.math-float span:nth-child(2) {
+  top: 90%; left: 40%;
+  animation: float2 22s infinite linear;
+}
+.math-float span:nth-child(3) {
+  top: 85%; left: 70%;
+  animation: float3 20s infinite linear;
+}
+.math-float span:nth-child(4) {
+  top: 95%; left: 85%;
+  animation: float4 25s infinite linear;
+}
+
+/* ===== Floating Keyframes ===== */
+@keyframes float1 {
+  0% { transform: translate(0, 0) rotate(0deg); opacity: 0; }
+  10% { opacity: 1; }
+  50% { transform: translate(-80px, -250px) rotate(180deg); opacity: 1; }
+  100% { transform: translate(-150px, -600px) rotate(360deg); opacity: 0; }
+}
+
+@keyframes float2 {
+  0% { transform: translate(0, 0) rotate(0deg); opacity: 0; }
+  15% { opacity: 1; }
+  50% { transform: translate(120px, -300px) rotate(-180deg); opacity: 1; }
+  100% { transform: translate(200px, -650px) rotate(-360deg); opacity: 0; }
+}
+
+@keyframes float3 {
+  0% { transform: translate(0, 0) scale(1) rotate(0deg); opacity: 0; }
+  20% { opacity: 1; }
+  50% { transform: translate(-100px, -350px) scale(1.2) rotate(90deg); opacity: 1; }
+  100% { transform: translate(-200px, -700px) scale(1) rotate(180deg); opacity: 0; }
+}
+
+@keyframes float4 {
+  0% { transform: translate(0, 0) rotate(0deg); opacity: 0; }
+  25% { opacity: 1; }
+  50% { transform: translate(80px, -400px) rotate(270deg); opacity: 1; }
+  100% { transform: translate(150px, -750px) rotate(540deg); opacity: 0; }
+}
+
+/* ===== Login box ===== */
+.login-box {
+  position: relative;
+  width: 400px;
+  background: rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(18px);
+  padding: 2rem;
+  border-radius: 16px;
+  color: #fff;
+  text-align: center;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.4);
+  animation: fadeIn 0.6s ease;
+  z-index: 10;
+}
+
+/* ===== Close button ===== */
+.close-btn {
+  position: absolute;
+  top: 12px;
+  right: 15px;
+  background: transparent;
+  border: none;
+  color: white;
+  font-size: 1.3rem;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+.close-btn:hover {
+  transform: scale(1.2);
+}
+
+/* ===== Logo + Title ===== */
+.login-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+.login-logo {
+  height: 60px;
+  margin-bottom: 0.5rem;
+}
+.login-header h2 {
+  font-size: 1.4rem;
+  font-weight: 600;
+}
+
+/* ===== Google button ===== */
+.google-btn {
+  width: 100%;
+  padding: 0.8rem;
+  border: none;
+  background: #4285F4;
+  color: white;
+  font-weight: bold;
+  border-radius: 8px;
+  cursor: pointer;
+  margin-bottom: 1rem;
+  transition: background 0.3s;
+}
+.google-btn:hover {
+  background: #357ae8;
+}
+
+/* ===== Divider ===== */
+.divider {
+  margin: 1rem 0;
+  color: rgba(255,255,255,0.6);
+  font-size: 0.9rem;
+}
+
+/* ===== Form ===== */
+.login-form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+  text-align: left;
+}
+
+.login-form label {
+  font-size: 0.9rem;
+  color: #ddd;
+}
+
+.login-form input {
+  padding: 0.6rem;
+  border-radius: 6px;
+  border: none;
+  outline: none;
+  background: rgba(255,255,255,0.2);
+  color: white;
+}
+
+.login-form input::placeholder {
+  color: rgba(255,255,255,0.6);
+}
+
+/* ===== Login button ===== */
+.login-btn {
+  margin-top: 1rem;
+  padding: 0.7rem;
+  border: none;
+  border-radius: 8px;
+  background: #1db954;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+.login-btn:hover {
+  background: #17a44c;
+}
+
+/* ===== Sign up text ===== */
+.signup-text {
+  margin-top: 1rem;
+  font-size: 0.9rem;
+}
+.signup-text a {
+  color: #42a5f5;
+  text-decoration: none;
+  font-weight: bold;
+}
+.signup-text a:hover {
+  text-decoration: underline;
+}
+/* Switch to signup button */
+/* Switch to signup button */
+.switch-btn {
+  background: none;
+  border: none;
+  color: #4cc9f0;   /* link-like color */
+  font-weight: bold;
+  cursor: pointer;
+  text-decoration: none;  /* 🚀 removed underline */
+  transition: color 0.3s ease;
+  font-size: 14px;
+}
+
+.switch-btn:hover {
+  color: #00e0ff;   /* brighter hover */
+}
+
+
+
+/* ===== Background animation ===== */
+@keyframes animateBg {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: scale(0.9); }
+  to { opacity: 1; transform: scale(1); }
+}

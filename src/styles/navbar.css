@@ -1,0 +1,58 @@
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  background: transparent;
+  color: white;
+}
+
+.logo {
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+.search-box {
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  border: none;
+  width: 300px;
+  outline: none;
+}
+
+.navbar-right .btn {
+  margin-left: 1rem;
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  border: none;
+  cursor: pointer;
+}
+
+.btn.primary {
+  background: #ff5f5f;
+  color: white;
+}
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  background: transparent;
+  color: white;
+}
+
+.navbar-left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.logo-img {
+  height: 40px; /* adjust size as needed */
+  width: auto;
+}
+
+.logo-text {
+  font-size: 1.4rem;
+  font-weight: 600;
+}
