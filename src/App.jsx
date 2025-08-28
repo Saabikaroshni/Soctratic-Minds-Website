@@ -8,6 +8,10 @@ import Login from "./pages/Login";
 import Home from "./pages/Home";
 import Details from "./components/Details";
 import LearnMore from "./components/LearnMore";
+import Bot from "./pages/Bot";
+import Games from "./pages/Games";
+import Visual from "./pages/Visual";
+import Explorer from "./pages/Explorer";
 
 function App() {
   const [showLogin, setShowLogin] = useState(false);
@@ -47,6 +51,10 @@ function App() {
             <Route path="/signup" element={<Signup />} />
             <Route path="/home" element={<Home />} />
             <Route path="/details" element={<Details />} />
+            <Route path="/bot" element={<Bot />} />
+            <Route path="/games" element={<Games />} />
+            <Route path="/visualizer" element={<Visual />} />
+            <Route path="/missions" element={<Explorer />} />
           </Routes>
 
              {/* Show Login Modal */}

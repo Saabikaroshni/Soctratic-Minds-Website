@@ -27,7 +27,7 @@ const Signup = ({ onClose }) => {
       showToast("Google Signup Successful! 🎉");
       setTimeout(() => {
         if (onClose) onClose();
-        navigate("/details");
+        navigate("/home");
       }, 1500);
     } catch (error) {
       console.error(error);
@@ -48,7 +48,7 @@ const Signup = ({ onClose }) => {
       showToast("Signup Successful! 🎉");
       setTimeout(() => {
         if (onClose) onClose();
-        navigate("/details");
+        navigate("/home");
       }, 1500);
     } catch (error) {
       console.error(error);

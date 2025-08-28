@@ -1,0 +1,52 @@
+.bot-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 10px;
+  min-height: 100vh;
+}
+
+.bot-title {
+  font-size: 28px;
+  font-weight: bold;
+  margin-bottom: 20px;
+  color: #fff; /* adjust if you want light text */
+}
+
+.bot-image {
+  max-width: 100%;
+  height: auto;
+  border-radius: 12px;
+  margin-bottom: 20px;
+}
+
+.start-btn {
+  padding: 12px 32px;
+  font-size: 18px;
+  font-weight: bold;
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.start-btn:hover {
+  background-color: #45a049;
+  transform: scale(1.05);
+}
+
+/* Responsive tweaks */
+@media (max-width: 450px) {
+  .bot-title {
+    font-size: 22px;
+  }
+
+  .start-btn {
+    width: 80%;
+    font-size: 16px;
+  }
+}
