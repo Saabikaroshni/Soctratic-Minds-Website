@@ -6,7 +6,7 @@ import "../styles/bot.css"; // optional for styling
 
 const Explorer= () => {
   const handleRedirect = () => {
-    window.location.href = "https://adventures-szuj.vercel.app/";
+    window.location.href = "https://scoratic-explorer-o1xc.vercel.app/";
   };
 
   return (
