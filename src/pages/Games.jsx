@@ -9,6 +9,9 @@ const games = [
   { name: "Time Traveller", link: "https://add-ai-dqks.vercel.app/" },
   { name: "Escape Room", link: "https://escape-math-room.vercel.app/" },
   { name: "Magic Maker", link: "https://magic-maker-coral.vercel.app/" },
+  { name: "Math Crush", link: "https://maths-crush.vercel.app/" },
+  { name: "Bird Shoot", link: "https://bird-shoot.vercel.app/" },
+  { name: "Math puzzle", link: "https://puzzle-game-sand.vercel.app/" }
 ];
 
 const Games = () => {

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { auth, provider } from "../firebase";
+import { auth, provider, facebookProvider } from "../firebase"; // ✅ added facebookProvider
 import { signInWithPopup, signInWithEmailAndPassword } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
 import "../styles/login.css";
@@ -8,16 +8,16 @@ import Logo from "../assets/Logo.png";
 const Login = ({ onClose, onSwitchToSignup }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [toast, setToast] = useState(null); // ✅ unified toast state
+  const [toast, setToast] = useState(null);
   const navigate = useNavigate();
 
-  // ✅ Show toast
+  // Show toast
   const showToast = (msg, type = "success") => {
     setToast({ msg, type });
-    setTimeout(() => setToast(null), 3000); // hide after 3s
+    setTimeout(() => setToast(null), 3000);
   };
 
-  // ✅ Google Login
+  // Google Login
   const handleGoogleLogin = async () => {
     try {
       await signInWithPopup(auth, provider);
@@ -32,7 +32,22 @@ const Login = ({ onClose, onSwitchToSignup }) => {
     }
   };
 
-  // ✅ Email/Password Login
+  // Facebook Login
+  const handleFacebookLogin = async () => {
+    try {
+      await signInWithPopup(auth, facebookProvider);
+      showToast("Facebook Login Successful! 🎉");
+      setTimeout(() => {
+        if (onClose) onClose();
+        navigate("/home");
+      }, 1500);
+    } catch (error) {
+      console.error(error);
+      showToast(error.message, "error");
+    }
+  };
+
+  // Email/Password Login
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
@@ -54,9 +69,7 @@ const Login = ({ onClose, onSwitchToSignup }) => {
       {[...Array(100)].map((_, i) => (
         <div
           key={i}
-          className={`star ${
-            i % 3 === 0 ? "small" : i % 3 === 1 ? "medium" : "large"
-          }`}
+          className={`star ${i % 3 === 0 ? "small" : i % 3 === 1 ? "medium" : "large"}`}
           style={{
             top: `${Math.random() * 100}%`,
             left: `${Math.random() * 100}%`,
@@ -65,18 +78,12 @@ const Login = ({ onClose, onSwitchToSignup }) => {
         ></div>
       ))}
 
-      {/* ✅ Toast */}
-      {toast && (
-        <div className={`toast ${toast.type}`}>
-          {toast.msg}
-        </div>
-      )}
+      {/* Toast */}
+      {toast && <div className={`toast ${toast.type}`}>{toast.msg}</div>}
 
       <div className="login-box">
         {/* Close Button */}
-        <button className="close-btn" onClick={onClose}>
-          ✖
-        </button>
+        <button className="close-btn" onClick={onClose}>✖</button>
 
         {/* Header */}
         <div className="login-header">
@@ -87,6 +94,11 @@ const Login = ({ onClose, onSwitchToSignup }) => {
         {/* Google Login */}
         <button className="google-btn" onClick={handleGoogleLogin}>
           Login with Google
+        </button>
+
+        {/* Facebook Login */}
+        <button className="facebook-btn" onClick={handleFacebookLogin}>
+          Login with Facebook
         </button>
 
         <div className="divider">or</div>

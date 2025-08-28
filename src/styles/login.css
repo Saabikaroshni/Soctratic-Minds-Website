@@ -14,6 +14,23 @@
   z-index: 2000;
   overflow: hidden;
 }
+/* ===== Facebook button ===== */
+.facebook-btn {
+  width: 100%;
+  padding: 0.8rem;
+  border: none;
+  background: #3b5998;
+  color: white;
+  font-weight: bold;
+  border-radius: 8px;
+  cursor: pointer;
+  margin-bottom: 1rem;
+  transition: background 0.3s;
+}
+.facebook-btn:hover {
+  background: #334d84;
+}
+
 /* Centered Toast Notification */
 /* Toast Styles */
 .toast {

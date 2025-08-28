@@ -1,6 +1,6 @@
 // Firebase v9 modular SDK
 import { initializeApp } from "firebase/app";
-import { getAuth, GoogleAuthProvider } from "firebase/auth";
+import { getAuth, GoogleAuthProvider, FacebookAuthProvider } from "firebase/auth";
 
 const firebaseConfig = {
   apiKey: "AIzaSyB4v11yhnlHwNFa7Pkf-ToSV8QSrY7MbP8",
@@ -12,7 +12,10 @@ const firebaseConfig = {
   measurementId: "G-VC6VCKC5BT",
 };
 
-// Init
+// Initialize Firebase
 const app = initializeApp(firebaseConfig);
+
+// Auth providers
 export const auth = getAuth(app);
 export const provider = new GoogleAuthProvider();
+export const facebookProvider = new FacebookAuthProvider();

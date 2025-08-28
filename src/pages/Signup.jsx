@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { auth, provider } from "../firebase";
+import { auth, provider, facebookProvider } from "../firebase";
 import { createUserWithEmailAndPassword, signInWithPopup } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
 import "../styles/login.css"; // reuse same styles
@@ -10,14 +10,14 @@ const Signup = ({ onClose }) => {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
-  const [toast, setToast] = useState(null); // ✅ toast state
+  const [toast, setToast] = useState(null);
 
   const navigate = useNavigate();
 
   // Custom Toast
   const showToast = (msg, type = "success") => {
     setToast({ msg, type });
-    setTimeout(() => setToast(null), 3000); // Auto hide after 3s
+    setTimeout(() => setToast(null), 3000);
   };
 
   // Google Signup
@@ -25,6 +25,21 @@ const Signup = ({ onClose }) => {
     try {
       await signInWithPopup(auth, provider);
       showToast("Google Signup Successful! 🎉");
+      setTimeout(() => {
+        if (onClose) onClose();
+        navigate("/home");
+      }, 1500);
+    } catch (error) {
+      console.error(error);
+      showToast(error.message, "error");
+    }
+  };
+
+  // Facebook Signup
+  const handleFacebookSignup = async () => {
+    try {
+      await signInWithPopup(auth, facebookProvider);
+      showToast("Facebook Signup Successful! 🎉");
       setTimeout(() => {
         if (onClose) onClose();
         navigate("/home");
@@ -62,9 +77,7 @@ const Signup = ({ onClose }) => {
       {[...Array(100)].map((_, i) => (
         <div
           key={i}
-          className={`star ${
-            i % 3 === 0 ? "small" : i % 3 === 1 ? "medium" : "large"
-          }`}
+          className={`star ${i % 3 === 0 ? "small" : i % 3 === 1 ? "medium" : "large"}`}
           style={{
             top: `${Math.random() * 100}%`,
             left: `${Math.random() * 100}%`,
@@ -73,18 +86,12 @@ const Signup = ({ onClose }) => {
         ></div>
       ))}
 
-      {/* ✅ Toast Notification */}
-      {toast && (
-        <div className={`toast ${toast.type}`}>
-          {toast.msg}
-        </div>
-      )}
+      {/* Toast Notification */}
+      {toast && <div className={`toast ${toast.type}`}>{toast.msg}</div>}
 
       <div className="login-box">
         {/* Close Button */}
-        <button className="close-btn" onClick={onClose}>
-          ✖
-        </button>
+        <button className="close-btn" onClick={onClose}>✖</button>
 
         {/* Header */}
         <div className="login-header">
@@ -95,6 +102,11 @@ const Signup = ({ onClose }) => {
         {/* Google Signup */}
         <button className="google-btn" onClick={handleGoogleSignup}>
           Sign up with Google
+        </button>
+
+        {/* Facebook Signup */}
+        <button className="facebook-btn" onClick={handleFacebookSignup}>
+          Sign up with Facebook
         </button>
 
         <div className="divider">or</div>
@@ -139,9 +151,7 @@ const Signup = ({ onClose }) => {
           </div>
 
           {/* Signup Button */}
-          <button type="submit" className="login-btn">
-            Sign Up
-          </button>
+          <button type="submit" className="login-btn">Sign Up</button>
         </form>
       </div>
     </div>
