@@ -7,6 +7,7 @@ import Signup from "./pages/Signup";
 import Login from "./pages/Login";
 import Home from "./pages/Home";
 import Details from "./components/Details";
+import LearnMore from "./components/LearnMore";
 
 function App() {
   const [showLogin, setShowLogin] = useState(false);
@@ -42,6 +43,7 @@ function App() {
           <Navbar onLoginClick={() => setShowLogin(true)} />
           <Routes>
             <Route path="/" element={<Hero />} />
+            <Route path="/learnmore" element={<LearnMore />} />
             <Route path="/signup" element={<Signup />} />
             <Route path="/home" element={<Home />} />
             <Route path="/details" element={<Details />} />

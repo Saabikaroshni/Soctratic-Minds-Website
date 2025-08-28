@@ -1,4 +1,27 @@
-/* Background floating fractions */
+/* ==============================================
+  Hero Section & Background Effects (Corrected)
+  ==============================================
+*/
+
+/* --- Hero Section Container --- */
+.hero {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  text-align: center;
+  padding: 2rem;
+  color: white;
+  position: relative; /* Crucial for layering child elements */
+  overflow: hidden; /* Prevents elements from spilling out */
+  /* background: linear-gradient(-45deg, #023a53, #011838, #044a5a, #01151e); */
+  background-size: 400% 400%;
+  animation: gradientShift 15s ease infinite;
+}
+
+/* --- Background floating fractions --- */
+/* This container sits inside .hero */
 .fractions-bg {
   position: absolute;
   top: 0;
@@ -6,10 +29,7 @@
   width: 100%;
   height: 100%;
   overflow: hidden;
-  z-index: -1; /* behind everything */
-}
-.container{
-  display: relative;
+  /* z-index is not needed here as it's a child of .hero */
 }
 
 .fractions-bg span {
@@ -17,35 +37,183 @@
   display: block;
   font-size: 2rem;
   color: rgba(255, 255, 255, 0.15);
+  /* Set initial position at the bottom */
+  top: 110%;
   animation: floatFraction 20s linear infinite;
   user-select: none;
+  opacity: 0; /* Start as invisible */
 }
 
-/* Random positions */
-.fractions-bg span:nth-child(1) { left: 10%; animation-duration: 18s; font-size: 2.5rem; }
-.fractions-bg span:nth-child(2) { left: 30%; animation-duration: 22s; font-size: 2rem; }
-.fractions-bg span:nth-child(3) { left: 50%; animation-duration: 25s; font-size: 3rem; }
-.fractions-bg span:nth-child(4) { left: 70%; animation-duration: 20s; font-size: 1.8rem; }
-.fractions-bg span:nth-child(5) { left: 90%; animation-duration: 26s; font-size: 2.8rem; }
+/* Stagger the animations and sizes for a more dynamic look */
+.fractions-bg span:nth-child(1) { left: 10%; animation-duration: 18s; animation-delay: 0s; font-size: 2.5rem; }
+.fractions-bg span:nth-child(2) { left: 30%; animation-duration: 22s; animation-delay: 3s; font-size: 2rem; }
+.fractions-bg span:nth-child(3) { left: 50%; animation-duration: 25s; animation-delay: 5s; font-size: 3rem; }
+.fractions-bg span:nth-child(4) { left: 70%; animation-duration: 20s; animation-delay: 8s; font-size: 1.8rem; }
+.fractions-bg span:nth-child(5) { left: 90%; animation-duration: 26s; animation-delay: 10s; font-size: 2.8rem; }
 
 @keyframes floatFraction {
   0% {
-    top: 100%;
+    /* Start position is now handled by the base style */
     transform: rotate(0deg) scale(1);
     opacity: 0;
   }
-  20% {
+  10%, 90% {
+    /* Fade in and stay visible for most of the animation */
     opacity: 1;
   }
   50% {
     transform: rotate(180deg) scale(1.2);
   }
-  80% {
-    opacity: 1;
-  }
   100% {
-    top: -10%;
+    /* Move completely off-screen at the top */
+    top: -20%;
     transform: rotate(360deg) scale(1);
     opacity: 0;
   }
 }
+
+/* --- Animated gradient background --- */
+@keyframes gradientShift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* --- Hero Content (z-index added to ensure it's on top) --- */
+.hero-content {
+    margin-top: -350px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    z-index: 10;
+    animation: fadeSlideIn 1.5s ease-out forwards;
+}
+
+.hero h1 {
+  font-size: 3rem;
+  font-weight: 700;
+  background: linear-gradient(90deg, #00d2ff, #3a7bd5);
+  -webkit-background-clip: text;
+  background-clip: text; /* Standard property */
+  -webkit-text-fill-color: transparent;
+}
+
+.hero p {
+  font-size: 1.2rem;
+  max-width: 700px;
+  margin-top: 1rem;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+/* --- Animation for text --- */
+@keyframes fadeSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ==============================================
+  Responsive Design
+  ==============================================
+*/
+@media (max-width: 768px) {
+  .hero h1 {
+    font-size: 2.2rem;
+  }
+
+  .hero p {
+    font-size: 1rem;
+    padding: 0 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero h1 {
+    font-size: 1.8rem;
+  }
+
+  .hero p {
+    font-size: 0.9rem;
+  }
+}
+
+
+
+body {
+  font-family: "Inter", sans-serif;
+  background-color: #011838;
+  color: #e5e7eb;
+}
+
+.galaxy-bg {
+  background: linear-gradient(-45deg, #023a53, #011838, #044a5a, #01151e);
+  background-size: 400% 400%;
+  animation: gradientShift 15s ease infinite;
+}
+
+@keyframes gradientShift {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.star {
+  position: absolute;
+  background-color: white;
+  border-radius: 50%;
+  animation: twinkle 2s infinite ease-in-out;
+}
+
+.star.small {
+  width: 1px;
+  height: 1px;
+}
+.star.medium {
+  width: 2px;
+  height: 2px;
+}
+.star.large {
+  width: 3px;
+  height: 3px;
+}
+
+@keyframes twinkle {
+  0%,
+  100% {
+    opacity: 0.5;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+.feature-card.active {
+  background-color: #0c4a6e;
+  border-color: #38bdf8;
+  transform: scale(1.02);
+}
+
+.smooth-scroll {
+  scroll-behavior: smooth;
+}
+
+.hero-title-gradient {
+  background: linear-gradient(90deg, #00d2ff, #3a7bd5);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
