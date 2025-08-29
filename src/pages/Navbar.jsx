@@ -2,7 +2,7 @@ import React from "react";
 import "../styles/navbar.css";
 import Logo from "../assets/Logo.png";
 
-const Navbar = ({ onLoginClick }) => {
+const Navbar = ({ onLoginClick, isLoggedIn, onLogoutClick }) => {
   return (
     <nav className="navbar">
       <div className="navbar-left">
@@ -19,9 +19,15 @@ const Navbar = ({ onLoginClick }) => {
       </div>
 
       <div className="navbar-right">
-        <button className="btn primary" onClick={onLoginClick}>
-          Log In
-        </button>
+        {!isLoggedIn ? (
+          <button className="btn primary" onClick={onLoginClick}>
+            Log In
+          </button>
+        ) : (
+          <button className="btn secondary" onClick={onLogoutClick}>
+            Logout
+          </button>
+        )}
       </div>
     </nav>
   );

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Navbar from "./pages/Navbar";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Hero from "./pages/Hero";
@@ -19,6 +19,24 @@ import Voice from "./pages/Voice";
 function App() {
   const [showLogin, setShowLogin] = useState(false);
   const [showSignup, setShowSignup] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  // Check localStorage for logged-in user on mount
+  useEffect(() => {
+    const user = localStorage.getItem("user");
+    if (user) setIsLoggedIn(true);
+  }, []);
+
+  const handleLogin = (userData) => {
+    localStorage.setItem("user", JSON.stringify(userData));
+    setIsLoggedIn(true);
+    setShowLogin(false); // Close login modal after login
+  };
+
+  const handleLogout = () => {
+    localStorage.removeItem("user");
+    setIsLoggedIn(false);
+  };
 
   // Generate stars only once
   const stars = Array.from({ length: 150 }, (_, i) => ({
@@ -47,7 +65,11 @@ function App() {
 
         {/* Main App */}
         <BrowserRouter>
-          <Navbar onLoginClick={() => setShowLogin(true)} />
+          <Navbar
+            onLoginClick={() => setShowLogin(true)}
+            isLoggedIn={isLoggedIn}
+            onLogoutClick={handleLogout}
+          />
 
           <Routes>
             <Route path="/" element={<Hero />} />
@@ -66,14 +88,20 @@ function App() {
 
           {/* Show Login Modal */}
           {showLogin && (
-            <Login
-              onClose={() => setShowLogin(false)}
-              onSwitchToSignup={() => {
-                setShowLogin(false);
-                setShowSignup(true);
-              }}
-            />
-          )}
+  <Login
+    onClose={() => setShowLogin(false)}
+    onSwitchToSignup={() => {
+      setShowLogin(false);
+      setShowSignup(true);
+    }}
+    onLoginSuccess={(userData) => {
+      localStorage.setItem("user", JSON.stringify(userData));
+      setIsLoggedIn(true);
+      setShowLogin(false);
+    }}
+  />
+)}
+
 
           {/* Show Signup Modal */}
           {showSignup && (

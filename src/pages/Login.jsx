@@ -1,11 +1,11 @@
 import React, { useState } from "react";
-import { auth, provider, facebookProvider } from "../firebase"; // ✅ added facebookProvider
+import { auth, provider, facebookProvider } from "../firebase";
 import { signInWithPopup, signInWithEmailAndPassword } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
 import "../styles/login.css";
 import Logo from "../assets/Logo.png";
 
-const Login = ({ onClose, onSwitchToSignup }) => {
+const Login = ({ onClose, onSwitchToSignup, onLoginSuccess }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [toast, setToast] = useState(null);
@@ -20,8 +20,10 @@ const Login = ({ onClose, onSwitchToSignup }) => {
   // Google Login
   const handleGoogleLogin = async () => {
     try {
-      await signInWithPopup(auth, provider);
+      const result = await signInWithPopup(auth, provider);
       showToast("Google Login Successful! 🎉");
+
+      if (onLoginSuccess) onLoginSuccess(result.user); // <-- Notify App
       setTimeout(() => {
         if (onClose) onClose();
         navigate("/home");
@@ -35,8 +37,10 @@ const Login = ({ onClose, onSwitchToSignup }) => {
   // Facebook Login
   const handleFacebookLogin = async () => {
     try {
-      await signInWithPopup(auth, facebookProvider);
+      const result = await signInWithPopup(auth, facebookProvider);
       showToast("Facebook Login Successful! 🎉");
+
+      if (onLoginSuccess) onLoginSuccess(result.user); // <-- Notify App
       setTimeout(() => {
         if (onClose) onClose();
         navigate("/home");
@@ -51,8 +55,10 @@ const Login = ({ onClose, onSwitchToSignup }) => {
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
-      await signInWithEmailAndPassword(auth, email, password);
+      const userCredential = await signInWithEmailAndPassword(auth, email, password);
       showToast("Login Successful! 🎉");
+
+      if (onLoginSuccess) onLoginSuccess(userCredential.user); // <-- Notify App
       setTimeout(() => {
         if (onClose) onClose();
         navigate("/home");
