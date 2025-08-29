@@ -13,6 +13,7 @@ import Games from "./pages/Games";
 import Visual from "./pages/Visual";
 import Explorer from "./pages/Explorer";
 import Story from "./pages/Story";
+import LearnFraction from "./pages/LearnFraction";
 
 function App() {
   const [showLogin, setShowLogin] = useState(false);
@@ -24,7 +25,7 @@ function App() {
     size: i % 3 === 0 ? "small" : i % 3 === 1 ? "medium" : "large",
     top: `${Math.random() * 100}%`,
     left: `${Math.random() * 100}%`,
-    delay: `${Math.random() * 3}s`
+    delay: `${Math.random() * 3}s`,
   }));
 
   return (
@@ -38,7 +39,7 @@ function App() {
             style={{
               top: star.top,
               left: star.left,
-              animationDelay: star.delay
+              animationDelay: star.delay,
             }}
           />
         ))}
@@ -46,6 +47,7 @@ function App() {
         {/* Main App */}
         <BrowserRouter>
           <Navbar onLoginClick={() => setShowLogin(true)} />
+
           <Routes>
             <Route path="/" element={<Hero />} />
             <Route path="/learnmore" element={<LearnMore />} />
@@ -57,9 +59,10 @@ function App() {
             <Route path="/visualizer" element={<Visual />} />
             <Route path="/missions" element={<Explorer />} />
             <Route path="/story" element={<Story />} />
+            <Route path="/learnfraction" element={<LearnFraction />} />
           </Routes>
 
-             {/* Show Login Modal */}
+          {/* Show Login Modal */}
           {showLogin && (
             <Login
               onClose={() => setShowLogin(false)}

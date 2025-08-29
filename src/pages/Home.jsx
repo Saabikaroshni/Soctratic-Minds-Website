@@ -7,6 +7,10 @@ const Home = () => {
     <div className="home-container">
       <h1 className="home-title">Welcome to Socratic Minds</h1>
       <div className="options-container">
+        <Link to="/learnfraction" className="option-card">
+          <h2>Socratic Learn</h2>
+          <p>Learn Fractions Through Simple Explanation</p>
+        </Link>
         <Link to="/bot" className="option-card">
           <h2>Socratic Bot</h2>
           <p>Chat and learn interactively with AI.</p>
