@@ -34,6 +34,11 @@ const Home = () => {
           <h2>Socratic Stories</h2>
           <p>Learn Fractions Through Stories</p>
         </Link>
+        <Link to="/voice" className="option-card">
+          <h2>Socratic Voice Challenger</h2>
+          <p>Test Your knowledge in fraction through our voice assitant</p>
+        </Link>
+        
       </div>
     </div>
   );

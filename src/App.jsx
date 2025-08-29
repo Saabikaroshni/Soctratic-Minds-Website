@@ -14,6 +14,7 @@ import Visual from "./pages/Visual";
 import Explorer from "./pages/Explorer";
 import Story from "./pages/Story";
 import LearnFraction from "./pages/LearnFraction";
+import Voice from "./pages/Voice";
 
 function App() {
   const [showLogin, setShowLogin] = useState(false);
@@ -60,6 +61,7 @@ function App() {
             <Route path="/missions" element={<Explorer />} />
             <Route path="/story" element={<Story />} />
             <Route path="/learnfraction" element={<LearnFraction />} />
+            <Route path="/voice" element={<Voice />} />
           </Routes>
 
           {/* Show Login Modal */}
